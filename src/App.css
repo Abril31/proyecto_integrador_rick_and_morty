@@ -1,0 +1,9 @@
+.App {
+   text-align: center;
+   font-size: small;
+}
+.Card{
+   display: inline-block;
+   width: 20%;
+   height: 50%;
+}
