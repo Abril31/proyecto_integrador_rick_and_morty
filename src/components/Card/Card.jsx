@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
+import { addFav, removeFav } from "../redux/actions";
+import { connect } from "react-redux";
 
-export default function Card({
+export function Card({
   id,
   name,
   status,
@@ -9,6 +11,8 @@ export default function Card({
   origin,
   image,
   onClose,
+  addFav,
+  removeFav
 }) {
   return (
     <div className="Card">
@@ -23,5 +27,17 @@ export default function Card({
       <img src={image} alt="Rick" />
     </div>
   );
-}
+  };
+
+  const mapDispatchToProps = (dispatch) =>{
+    return {
+      addFav: (character)=> dispatch(addFav(character)),
+      removeFav: (id) => dispatch(removeFav(id))
+    }
+
+  };
+
+export default connect( null, mapDispatchToProps)(Card)
+
+
 //Esta es la plantilla que se reutiliza para generar las demás cards.
