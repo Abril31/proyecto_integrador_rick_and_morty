@@ -10,7 +10,7 @@ import Form from "./components/Form/Form";
 
 
 const email = 'bix@gmail.com'
-const password = 'DTmion78*'
+const password = '123zxc'
 
 function App() {
   
@@ -57,8 +57,9 @@ function App() {
   return (
     <div className="App">
      {
-       location.pathname !== '/' && <Nav onSearch={onSearch} /> 
- 
+       location.pathname !== '/' && 
+       <Nav onSearch={onSearch} 
+       setAccess={setAccess} /> 
              
      }
       
