@@ -2,8 +2,9 @@ import './Form.css'
 import { useState } from 'react';
 import validation from '../Validation/Validation';
 
-const Form = ({login}) => {
 
+const Form = ({login}) => {
+  
   const [userData, setUserData] = useState({
     email: "",
     password:""
@@ -24,11 +25,16 @@ const Form = ({login}) => {
     login(userData);
   }
   return (
-   <div className='container'>
+    
+   <div className='cont'>
+      <img src='../public/images/rm.png' alt='rickandmorty'/>
       <form onSubmit={handleSubmit}>
+        
         <label htmlFor='email'>EMAIL</label>
-        <input type='email' 
+        <input className='input'
+        type='email' 
         name='email' 
+        autoComplete='given-email'
         value={userData.email}
         onChange={handleChange} 
         />
@@ -36,15 +42,17 @@ const Form = ({login}) => {
          }</p>}
 
         <label htmlFor='password'>PASSWORD</label>
-        <input type="password"
-        name="password" 
+        <input className='input'
+        type='password'
+        name='password' 
+        autoComplete="off"
         value={userData.password}
         onChange={handleChange}
         />
          {errors.password && <p>{errors.password
          }</p>}
          
-        <button type='submit'>SUBMIT</button>
+        <button className='btn-submit' type='submit'>SUBMIT</button>
       </form>
       </div>
   );
