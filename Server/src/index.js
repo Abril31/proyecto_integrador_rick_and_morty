@@ -1,16 +1,18 @@
-const http = require('http');
-const getCharById = require('./controllers/')
+const http = require("http");
+const { getCharById } = require("./controllers/get.CharById");
 const PORT = 3001;
 
- http.createServer((req, res)=>{
+http
+  .createServer((req, res) => {
     const { url } = req;
-    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader("Access-Control-Allow-Origin", "*");
 
     //localhost:3001/rickandmorty/character/${id} ya tiene una barra por default
 
-    if( url.includes("rickandmorty/character")){
-        //extraer el id por medio de split y pop
-        let urlID = url.split('/').pop();
-        getCharById(res, urlID)
+    if (url.includes('rickandmorty/character')) {
+      //extraer el id por medio de split y pop
+      let urlID = url.split('/').pop();
+      getCharById(res, Number(urlID));
     }
-}).listen(PORT);
+  })
+  .listen(PORT);
