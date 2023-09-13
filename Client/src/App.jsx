@@ -9,42 +9,48 @@ import Detail from "../components/Detail/Detail";
 import Form from "../components/Form/Form";
 import Favorites from "../components/Favorites/Favorites";
 
-
-const email = 'bix@gmail.com'
-const password = '123zxc'
-
 function App() {
-  
   const location = useLocation();
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
-  const [access, setAccess] = useState(false);
-  
-  function login (userData){
-    if(userData.email === email && userData.password === password){
-      setAccess(true);
-      navigate('/home'); 
+
+  const [access, setAccess] = useState(true);
+
+  async function login(userData) {
+    try {
+      const { email, password } = userData;
+      const URL = "http://localhost:3001/rickandmorty/login/";
+      const { data } = await axios(
+        URL + `?email=${email}&password=${password}`
+      );
+      const { access } = data;
+      setAccess(access);
+      access && navigate("/home");
+    } catch (error) {
+      console.log(error);
     }
   }
   useEffect(() => {
-    !access && navigate('/'); }, [access]);
-  
-  
-  let onSearch = (id) => {
-    axios(`http://localhost:3001/rickandmorty/character/${id}`).then(
-      ({ data }) => {
-        if (
-          data.name &&
-          !characters.find((character) => character.id === data.id)
-        ) {
-          setCharacters((oldChars) => [...oldChars, data]);
-        } else {
-          window.alert(
-            "¡No hay personajes con este ID o el personaje ya fue agregado!"
-          );
-        }
+    !access && navigate("/");
+  }, [access]);
+
+  let onSearch = async (id) => {
+    try {
+      const response = await axios(
+        `http://localhost:3001/rickandmorty/character/${id}`
+      );
+      const data = response.data;
+
+      if (data.name) {
+        setCharacters((oldChars) => [...oldChars, data]);
+      } else {
+        window.alert(
+          "¡No hay personajes con este ID o el personaje ya fue agregado!"
+        );
       }
-    );
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   let onClose = (id) => {
@@ -52,29 +58,23 @@ function App() {
     let filteredCharacters = characters.filter(filterCharacters);
     setCharacters(filteredCharacters);
   };
- 
-  
 
   return (
     <div className="App">
-     {
-       location.pathname !== '/' && 
-       <Nav onSearch={onSearch} 
-       setAccess={setAccess} /> 
-             
-     }
-      
-      <Routes>
-        
-        <Route path='/' element={<Form login={login}/>} />
-        <Route path='/home' element={<Cards characters={characters} onClose={onClose} />} />
-        <Route path='/about' element={<About />} />
-        <Route path='/detail/:id' element={<Detail />} />
-        <Route path='/favorites' element={<Favorites />} />
+      {location.pathname !== "/" && (
+        <Nav onSearch={onSearch} setAccess={setAccess} />
+      )}
 
-       
+      <Routes>
+        <Route path="/" element={<Form login={login} />} />
+        <Route
+          path="/home"
+          element={<Cards characters={characters} onClose={onClose} />}
+        />
+        <Route path="/about" element={<About />} />
+        <Route path="/detail/:id" element={<Detail />} />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
-      
     </div>
   );
 }
