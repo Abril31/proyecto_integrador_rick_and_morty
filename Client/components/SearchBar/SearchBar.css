@@ -1,0 +1,27 @@
+.search-bar{
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+.search-btn{
+  background-color: #86d98e;
+  color: #2b2821;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 16px;
+  margin-left: 10px;
+  cursor: pointer;
+  font-size: 16px;
+}
+.search-btn:hover {
+    background-color: #6da832;
+  }
+  .search-input {
+    flex-grow: 1; /* El campo de entrada ocupa todo el espacio disponible */
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+  }

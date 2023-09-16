@@ -14,7 +14,7 @@ function App() {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
 
-  const [access, setAccess] = useState(true);
+  const [access, setAccess] = useState(false);
 
   async function login(userData) {
     try {
@@ -36,17 +36,21 @@ function App() {
 
   let onSearch = async (id) => {
     try {
-      const response = await axios(
+      if (id > 826) {
+        alert("No existe el personaje");
+        return;
+      }
+      const response = await axios.get(
         `http://localhost:3001/rickandmorty/character/${id}`
       );
       const data = response.data;
 
       if (data.name) {
-        setCharacters((oldChars) => [...oldChars, data]);
-      } else {
-        window.alert(
-          "¡No hay personajes con este ID o el personaje ya fue agregado!"
-        );
+        if (characters.some((character) => character.id === Number(id))) {
+          alert("El personaje ya fue agregado");
+        } else {
+          setCharacters((characters) => [...characters, data]);
+        }
       }
     } catch (error) {
       console.log(error);

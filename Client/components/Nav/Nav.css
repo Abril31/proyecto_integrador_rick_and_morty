@@ -1,6 +1,6 @@
 .container-header{
-    background-color: rgba(31, 8, 31, 0.615);
-    font-size: 1.5rem;
+    background-color: rgba(0, 0, 0, 0.85);
+    font-size: 1.4rem;
     
 }
 .nav-buttons{
@@ -11,12 +11,23 @@
     margin: 0 auto; 
     padding-top: 1rem;
     padding-bottom: 2rem; 
+    text-decoration: none;
+    outline: none;
 }
 .nav-button{
-    background-color: white;
-    font-size: 1.5rem;
-    text-decoration: none;
-    
+  background-color: #86d98e; /* Un verde turquesa */
+  color: #2b2821; /* Amarillo */
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  text-transform: uppercase;
+  font-weight: bold;
+  letter-spacing: 1px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: background-color 0.3s ease;
+ 
 }
 .lo-boton{
   background-color: #86d98e; /* Un verde turquesa */

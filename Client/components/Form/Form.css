@@ -1,5 +1,5 @@
 .cont {
-   background-color: #ececec;
+   background-color:  #865417 ;
     max-width: 30%;
     height: 70%;
     margin: 10% auto;
@@ -17,6 +17,7 @@ img{
 label{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.5rem;
+    color: #cae2d2 ;
 }
 .input {
     width: 90%;
@@ -27,8 +28,8 @@ label{
 }
 
 .btn-submit {
-    background-color: #5b2dc9;
-    color: whitesmoke;
+    background-color: #f9dfa1 ;
+    color: #442c1b ;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
     font-size: 1.5rem;
     padding: 10px 20px;
