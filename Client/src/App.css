@@ -1,11 +1,5 @@
-.App {
-   text-align: center;
-   font-size: small;
-   
-} 
- /* .Card{
-   display: inline-block;
-   width: 15%;
-   height: 40%;
 
-} */
+.app{
+   background-color: blue;
+}
+

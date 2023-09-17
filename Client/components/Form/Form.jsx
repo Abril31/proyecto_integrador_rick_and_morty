@@ -25,36 +25,46 @@ const Form = ({ login }) => {
     event.preventDefault();
     login(userData);
   };
+
   return (
-    <div className="cont">
-      <img src="../public/images/rm.png" alt="rickandmorty" />
-      <form onSubmit={handleSubmit}>
-        <label htmlFor="email">EMAIL</label>
-        <input
-          className="input"
-          type="email"
-          name="email"
-          autoComplete="given-email"
-          value={userData.email}
-          onChange={handleChange}
-        />
-        {errors.email && <p>{errors.email}</p>}
+    <div className="login-background">
+      <div className="cont">
+        <div className="cont-form field">
+          <form onSubmit={handleSubmit}>
+            {/* <img src="../public/images/header1.jpg" /> */}
+            <div className="data">
+              <label htmlFor="email">EMAIL</label>
+              <input
+                className="input"
+                placeholder="Ingresa tu correo electrónico..."
+                type="email"
+                name="email"
+                autoComplete="given-email"
+                value={userData.email}
+                onChange={handleChange}
+              />
+              {errors.email && <p className="error1">{errors.email}</p>}
 
-        <label htmlFor="password">PASSWORD</label>
-        <input
-          className="input"
-          type="password"
-          name="password"
-          autoComplete="off"
-          value={userData.password}
-          onChange={handleChange}
-        />
-        {errors.password && <p>{errors.password}</p>}
-
-        <button className="btn-submit" type="submit">
-          SUBMIT
-        </button>
-      </form>
+              <label htmlFor="password">PASSWORD</label>
+              <input
+                className="input"
+                placeholder="Ingresa tu contraseña..."
+                type="password"
+                name="password"
+                autoComplete="off"
+                value={userData.password}
+                onChange={handleChange}
+              />
+              {errors.password && <p className="error2">{errors.password}</p>}
+              <div className="btn-cont">
+                <button className="btn-submit" type="submit">
+                  SUBMIT
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };

@@ -14,7 +14,7 @@ function App() {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
 
-  const [access, setAccess] = useState(false);
+  const [access, setAccess] = useState(true);
 
   async function login(userData) {
     try {
@@ -62,9 +62,17 @@ function App() {
     let filteredCharacters = characters.filter(filterCharacters);
     setCharacters(filteredCharacters);
   };
-
+  const getBackgroundColor = () => {
+    if (location.pathname === "/home") {
+      return "black";
+    } else if (location.pathname === "/") {
+      return "lightblue";
+    } else {
+      return "white";
+    }
+  };
   return (
-    <div className="App">
+    <div>
       {location.pathname !== "/" && (
         <Nav onSearch={onSearch} setAccess={setAccess} />
       )}
