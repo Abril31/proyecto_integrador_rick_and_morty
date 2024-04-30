@@ -1,8 +1,11 @@
 import "./Form.css";
 import { useState } from "react";
 import validation from "../Validation/Validation";
+import { useNavigate } from "react-router-dom";
 
 const Form = ({ login }) => {
+  const navigate = useNavigate();
+  const [newGuest, setNewGuest] = useState(false);
   const [userData, setUserData] = useState({
     email: "",
     password: "",
@@ -25,7 +28,10 @@ const Form = ({ login }) => {
     event.preventDefault();
     login(userData);
   };
-
+  const handleGuest = () => {
+    setNewGuest(true);
+    navigate("/home");
+  };
   return (
     <div className="login-background">
       <div className="cont">
@@ -57,6 +63,9 @@ const Form = ({ login }) => {
               />
               {errors.password && <p className="error2">{errors.password}</p>}
               <div className="btn-cont">
+                <button className="btn-guest" onClick={handleGuest}>
+                  Enter as a guest
+                </button>
                 <button className="btn-submit" type="submit">
                   SUBMIT
                 </button>

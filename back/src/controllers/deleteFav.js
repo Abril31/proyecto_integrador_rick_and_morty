@@ -1,17 +1,17 @@
-const { FavoriteModel } = require("../DB_connection");
+const { Favorite } = require("../DB_connection");
 
 const deleteFav = async (req, res) => {
   const { id } = req.params;
 
   try {
     // Eliminar el personaje favorito por su ID
-    const deletedRows = await FavoriteModel.destroy({
+    const deletedRows = await Favorite.destroy({
       where: { id },
     });
 
     if (deletedRows > 0) {
       // Si se eliminó al menos una fila, se considera exitoso
-      const allFavorites = await FavoriteModel.findAll();
+      const allFavorites = await Favorite.findAll();
       return res.status(200).json(allFavorites);
     } else {
       // Si no se encontró el personaje para eliminar, responde con 404

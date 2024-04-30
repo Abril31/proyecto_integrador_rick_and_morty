@@ -1,5 +1,4 @@
-import "./Card-css/Card.css";
-import "./Card-css/Buttons.css";
+import "./Card.css";
 
 import { NavLink } from "react-router-dom";
 import { addFav, removeFav } from "../redux/actions";
@@ -23,7 +22,7 @@ export function Card({
   const handleFavorite = () => {
     isFav
       ? removeFav(id)
-      : addFav({ id, name, status, species, gender, origin, image, onClose });
+      : addFav({ id, name, status, species, gender, origin, image });
     setIsFav(!isFav);
   };
 
@@ -37,30 +36,31 @@ export function Card({
 
   return (
     <div className="card">
-      <div className="love-cont">
-        {isFav ? (
-          <button className="love-btn" onClick={handleFavorite}>
-            ❤️
-          </button>
-        ) : (
-          <button className="love-btn" onClick={handleFavorite}>
-            🤍
-          </button>
-        )}
-      </div>
-      <div className="cont-btn">
+      <div>
         <button className="close-btn" onClick={() => onClose(id)}>
-          X
+          <span className="text-x">X</span>
         </button>
+        <img src={image} alt="Picture" />
       </div>
-      <NavLink className="nav-link" to={`/detail/${id}`}>
-        <h3>Name: {name}</h3>
-      </NavLink>
-      <h2>Status: {status}</h2>
-      {/* <h3>Species: {species}</h3> */}
-      {/* <h3>Gender: {gender}</h3> */}
-      {/* <h3>Origin: {origin}</h3> */}
-      <img className="img-base" src={image} alt="Rick" />
+      <div className="info">
+        <div className="btn-container">
+          {isFav ? (
+            <button className="love-btn" onClick={handleFavorite}>
+              <span className="heart">❤️</span>
+            </button>
+          ) : (
+            <button className="love-btn" onClick={handleFavorite}>
+              <span className="heart">🤍</span>
+            </button>
+          )}
+        </div>
+        <NavLink className="nav-link" to={`/detail/${id}`}>
+          <h3>{name.length > 12 ? `${name.slice(0, 10)}...` : name}</h3>
+          <h4>
+            {species.length > 10 ? `${species.slice(0, 10)}...` : species}
+          </h4>
+        </NavLink>
+      </div>
     </div>
   );
 }

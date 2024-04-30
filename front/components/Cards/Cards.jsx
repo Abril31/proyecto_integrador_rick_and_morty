@@ -2,7 +2,7 @@ import Card from "../Card/Card";
 import "./Cards.css";
 export default function Cards({ characters, onClose }) {
   return (
-    <div>
+    <div className="cards-container">
       {characters.map(
         ({ id, name, status, species, gender, origin, image }) => {
           //por cada personaje que recorro devuelvo una card. Character es un objeto así q se puede hacer destructuring en el map.

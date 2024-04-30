@@ -41,6 +41,7 @@
     
     position: relative;
     padding: 1rem;
+    margin-top: 10rem;
 
 }
 
@@ -78,10 +79,9 @@ input::placeholder{
     font-size: 14px;
 }
 .btn-cont{
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: -40%;
-    position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .btn-submit {
   
@@ -99,4 +99,17 @@ input::placeholder{
 .btn-submit:hover{
     transform: scale(1.1); 
     /* background-color: greenyellow; */
+}
+.btn-guest{
+    background-color: transparent;
+    padding: 1rem;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 15px;
+    text-decoration: underline;
 }

@@ -21,7 +21,7 @@ const { User, Favorite } = sequelize.models;
 User.belongsToMany(Favorite, { through: "user_favorite" });
 Favorite.belongsToMany(User, { through: "user_favorite" });
 sequelize
-  .sync({ alter: false })
+  .sync({ force: true })
   .then(() => {
     console.log("Tablas creadas en la base de datos");
   })

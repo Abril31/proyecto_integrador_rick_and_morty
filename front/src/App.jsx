@@ -13,7 +13,6 @@ function App() {
   const location = useLocation();
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
-
   const [access, setAccess] = useState(false);
 
   async function login(userData) {
@@ -30,6 +29,7 @@ function App() {
       console.log(error);
     }
   }
+
   useEffect(() => {
     !access && navigate("/");
   }, [access]);
@@ -62,15 +62,7 @@ function App() {
     let filteredCharacters = characters.filter(filterCharacters);
     setCharacters(filteredCharacters);
   };
-  const getBackgroundColor = () => {
-    if (location.pathname === "/home") {
-      return "black";
-    } else if (location.pathname === "/") {
-      return "lightblue";
-    } else {
-      return "white";
-    }
-  };
+
   return (
     <div>
       {location.pathname !== "/" && (
@@ -85,7 +77,10 @@ function App() {
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
-        <Route path="/favorites" element={<Favorites />} />
+        <Route
+          path="/favorites"
+          element={<Favorites showCloseButton={false} />}
+        />
       </Routes>
     </div>
   );
