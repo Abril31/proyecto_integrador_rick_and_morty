@@ -1,6 +1,6 @@
 import Card from "../Card/Card";
 import "./Cards.css";
-export default function Cards({ characters, onClose }) {
+export default function Cards({ characters, onClose, showCloseButton }) {
   return (
     <div className="cards-container">
       {characters.map(
@@ -17,6 +17,7 @@ export default function Cards({ characters, onClose }) {
               origin={origin}
               image={image}
               onClose={onClose}
+              showCloseButton={showCloseButton}
             />
           );
         }

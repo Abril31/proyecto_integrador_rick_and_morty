@@ -9,7 +9,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         myFavorites: action.payload,
-        allCharacters: action.payload,
+        allCharactersFav: action.payload,
       };
 
     case "REMOVE_FAV":
@@ -19,10 +19,12 @@ const reducer = (state = initialState, action) => {
       const allCharFiltered = state.allCharactersFav.filter(
         (character) => character.gender === action.payload
       );
+      console.log("Despues del filtrado: ", allCharFiltered);
       return {
         ...state,
         myFavorites: allCharFiltered,
       };
+
     case "ORDER":
       const allCharactersFavCopy = [...state.allCharactersFav];
       return {
@@ -31,6 +33,11 @@ const reducer = (state = initialState, action) => {
           action.payload === "A"
             ? allCharactersFavCopy.sort((a, b) => a.id - b.id)
             : allCharactersFavCopy.sort((a, b) => b.id - a.id),
+      };
+    case "CLEAR":
+      return {
+        ...state,
+        myFavorites: state.allCharactersFav,
       };
 
     default:

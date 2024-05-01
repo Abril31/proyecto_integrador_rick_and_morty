@@ -41,3 +41,9 @@ export const orderCards = (order) => {
     payload: order,
   };
 };
+
+export const clearFilters = () => {
+  return {
+    type: "CLEAR",
+  };
+};

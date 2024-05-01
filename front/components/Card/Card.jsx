@@ -17,6 +17,7 @@ export function Card({
   addFav,
   removeFav,
   myFavorites,
+  showCloseButton,
 }) {
   const [isFav, setIsFav] = useState(false);
   const handleFavorite = () => {
@@ -37,9 +38,11 @@ export function Card({
   return (
     <div className="card">
       <div>
-        <button className="close-btn" onClick={() => onClose(id)}>
-          <span className="text-x">X</span>
-        </button>
+        {showCloseButton && (
+          <button className="close-btn" onClick={() => onClose(id)}>
+            <span className="text-x">X</span>
+          </button>
+        )}
         <img src={image} alt="Picture" />
       </div>
       <div className="info">

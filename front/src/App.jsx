@@ -14,6 +14,7 @@ function App() {
   const navigate = useNavigate();
   const [characters, setCharacters] = useState([]);
   const [access, setAccess] = useState(false);
+  const [showCloseButton, setShowCloseButton] = useState(true);
 
   async function login(userData) {
     try {
@@ -33,7 +34,14 @@ function App() {
   useEffect(() => {
     !access && navigate("/");
   }, [access]);
-
+  useEffect(() => {
+    // Verificar la ruta actual y establecer el valor de showCloseButton
+    if (location.pathname === "/home") {
+      setShowCloseButton(true);
+    } else if (location.pathname === "/favorites") {
+      setShowCloseButton(false);
+    }
+  }, [location.pathname]);
   let onSearch = async (id) => {
     try {
       if (id > 826) {
@@ -73,14 +81,17 @@ function App() {
         <Route path="/" element={<Form login={login} />} />
         <Route
           path="/home"
-          element={<Cards characters={characters} onClose={onClose} />}
+          element={
+            <Cards
+              characters={characters}
+              onClose={onClose}
+              showCloseButton={true}
+            />
+          }
         />
         <Route path="/about" element={<About />} />
         <Route path="/detail/:id" element={<Detail />} />
-        <Route
-          path="/favorites"
-          element={<Favorites showCloseButton={false} />}
-        />
+        <Route path="/favorites" element={<Favorites />} />
       </Routes>
     </div>
   );
