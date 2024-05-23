@@ -1,30 +1,32 @@
 import "./Nav.css";
 import SearchBar from "../SearchBar/SearchBar";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 
-const Nav = ({ onSearch, setAccess }) => {
+const Nav = ({ onSearch, setAccess, newGuest }) => {
   const handleLogOut = () => {
     setAccess(false);
   };
   return (
     <div className="container-header">
-      <nav className="nav-buttons">
+      <nav>
         <SearchBar onSearch={onSearch} />
-        <button className="lo-boton" onClick={handleLogOut}>
-          Log Out
-        </button>
-
-        <button className="nav-button">
-          <Link to="/favorites">Favorites</Link>
-        </button>
-
-        <button className="nav-button">
-          <Link to="/about">About</Link>
-        </button>
-
-        <button className="nav-button">
-          <Link to="/home">Home</Link>
-        </button>
+        {newGuest && (
+          <button className="lo-boton" onClick={handleLogOut}>
+            Salir
+          </button>
+        )}
+        <div className="cont-two">
+          <NavLink to="/home" className="nav-button" activeClassName="active">
+            Inicio
+          </NavLink>
+          <NavLink
+            className="nav-button"
+            to="/favorites"
+            activeClassName="active"
+          >
+            Favoritos
+          </NavLink>
+        </div>
       </nav>
     </div>
   );

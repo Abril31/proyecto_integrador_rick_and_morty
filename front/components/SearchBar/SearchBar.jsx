@@ -31,7 +31,9 @@ export default function SearchBar({ onSearch }) {
       </button>
       {/* //se ejecuta recién cuando se hace click en el botón, para eso se necesita un callback, 
             un paso previo antes de que se ejecute onSearch. */}
-      <button onClick={addRandom}>Random</button>
+      <button onClick={addRandom} className="random-btn">
+        Random
+      </button>
     </div>
   );
 }
